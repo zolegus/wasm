@@ -1,0 +1,28 @@
+[package]
+name = "wasm"
+version = "0.1.0"
+authors = ["zolegus <zolegus@gmail.com>"]
+edition = "2021"
+rust-version = "1.76"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[features]
+glow = ["eframe/glow"]
+
+[dependencies]
+egui = "0.28.1"
+egui_glow = "0.28.1"
+eframe = { version = "0.28.1", default-features = false, features = [
+    "accesskit",     # Make egui compatible with screen readers. NOTE: adds a lot of dependencies.
+    "default_fonts", # Embed the default egui fonts.
+    "glow",          # Use the glow rendering backend. Alternative: "wgpu".
+    "persistence",   # Enable restoring app state when restarting the app.
+] }
+
+serde = { version = "1", features = ["derive"] }
+log = { version = "0.4", features = ["std"] }
+wasm-bindgen = "=0.2.92"
+wasm-bindgen-futures = "0.4"
+web-sys = "0.3"
